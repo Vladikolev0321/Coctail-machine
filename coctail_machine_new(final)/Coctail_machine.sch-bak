@@ -171,7 +171,7 @@ Wire Wire Line
 Wire Wire Line
 	2300 2300 2700 2300
 Wire Wire Line
-	4750 1800 6550 1800
+	4750 1800 6100 1800
 Wire Wire Line
 	6550 1800 6550 1750
 Wire Wire Line
@@ -179,33 +179,16 @@ Wire Wire Line
 Wire Wire Line
 	1200 5700 1200 4850
 Wire Wire Line
-	4750 2150 7250 2150
+	4750 2550 7550 2550
 Wire Wire Line
-	4750 2550 7900 2550
-Wire Wire Line
-	6550 1250 6550 1050
+	6550 1250 6550 1150
 Wire Wire Line
 	6550 1050 7250 1050
 Wire Wire Line
-	7900 1050 7900 2050
-Wire Wire Line
-	7250 1650 7250 1050
+	7900 1050 7900 2000
 Connection ~ 7250 1050
 Wire Wire Line
 	7250 1050 7900 1050
-$Comp
-L power:+5V #PWR?
-U 1 1 5FCE93ED
-P 7250 900
-F 0 "#PWR?" H 7250 750 50  0001 C CNN
-F 1 "+5V" H 7265 1073 50  0000 C CNN
-F 2 "" H 7250 900 50  0001 C CNN
-F 3 "" H 7250 900 50  0001 C CNN
-	1    7250 900 
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7250 900  7250 1050
 $Comp
 L power:GND #PWR?
 U 1 1 5FCEEB8D
@@ -401,4 +384,82 @@ Text Notes 7400 7500 0    50   ~ 0
 Машина за коктейли
 Text Notes 7200 6900 0    79   ~ 0
 Мартин Дамянов    Владислав Колев
+$Comp
+L power:+5P #PWR?
+U 1 1 6013E7E6
+P 7250 1050
+F 0 "#PWR?" H 7250 900 50  0001 C CNN
+F 1 "+5P" H 7265 1223 50  0000 C CNN
+F 2 "" H 7250 1050 50  0001 C CNN
+F 3 "" H 7250 1050 50  0001 C CNN
+	1    7250 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:DIODE D?
+U 1 1 60140EDC
+P 6950 1550
+F 0 "D?" V 6904 1678 50  0000 L CNN
+F 1 "DIODE" V 6995 1678 50  0000 L CNN
+F 2 "" H 6950 1550 50  0001 C CNN
+F 3 "~" H 6950 1550 50  0001 C CNN
+	1    6950 1550
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6950 1750 6950 2150
+Wire Wire Line
+	4750 2150 6950 2150
+Connection ~ 6950 2150
+Wire Wire Line
+	6950 2150 7250 2150
+Wire Wire Line
+	6950 1350 7250 1350
+Wire Wire Line
+	7250 1050 7250 1350
+Connection ~ 7250 1350
+Wire Wire Line
+	7250 1350 7250 1650
+$Comp
+L pspice:DIODE D?
+U 1 1 6014E4F9
+P 6100 1350
+F 0 "D?" H 6100 1615 50  0000 C CNN
+F 1 "DIODE" H 6100 1524 50  0000 C CNN
+F 2 "" H 6100 1350 50  0001 C CNN
+F 3 "~" H 6100 1350 50  0001 C CNN
+	1    6100 1350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L pspice:DIODE D?
+U 1 1 6014F281
+P 7550 2200
+F 0 "D?" H 7550 2465 50  0000 C CNN
+F 1 "DIODE" H 7550 2374 50  0000 C CNN
+F 2 "" H 7550 2200 50  0001 C CNN
+F 3 "~" H 7550 2200 50  0001 C CNN
+	1    7550 2200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	7550 2000 7900 2000
+Connection ~ 7900 2000
+Wire Wire Line
+	7900 2000 7900 2050
+Wire Wire Line
+	7550 2400 7550 2550
+Connection ~ 7550 2550
+Wire Wire Line
+	7550 2550 7900 2550
+Wire Wire Line
+	6100 1150 6550 1150
+Connection ~ 6550 1150
+Wire Wire Line
+	6550 1150 6550 1050
+Wire Wire Line
+	6100 1550 6100 1800
+Connection ~ 6100 1800
+Wire Wire Line
+	6100 1800 6550 1800
 $EndSCHEMATC
