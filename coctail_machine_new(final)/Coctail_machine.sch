@@ -79,8 +79,6 @@ F 3 "~" H 7900 2260 50  0001 C CNN
 	1    7900 2350
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	2600 6950 2550 6950
 $Comp
 L Coctail_machine-rescue:Load_cell-Arduino-7-segment-rescue L1
 U 1 1 5FC1A1A8
@@ -172,7 +170,7 @@ F 1 "GND" H 2555 6777 50  0000 C CNN
 F 2 "" H 2550 6950 50  0001 C CNN
 F 3 "" H 2550 6950 50  0001 C CNN
 	1    2550 6950
-	1    0    0    -1  
+	0    1    1    0   
 $EndComp
 $Comp
 L Device:R R3
@@ -504,31 +502,6 @@ Wire Wire Line
 Wire Wire Line
 	2800 5450 3350 5450
 Wire Wire Line
-	1900 4150 2650 4150
-Wire Wire Line
-	2650 4150 2650 5600
-Wire Wire Line
-	2650 5600 3350 5600
-Wire Wire Line
-	1900 4250 2500 4250
-Wire Wire Line
-	2500 4250 2500 5750
-Wire Wire Line
-	2500 5750 3350 5750
-$Comp
-L power:+5V #PWR?
-U 1 1 6039EA57
-P 2550 6500
-F 0 "#PWR?" H 2550 6350 50  0001 C CNN
-F 1 "+5V" V 2565 6628 50  0000 L CNN
-F 2 "" H 2550 6500 50  0001 C CNN
-F 3 "" H 2550 6500 50  0001 C CNN
-	1    2550 6500
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	2550 6500 2600 6500
-Wire Wire Line
 	6550 1050 6550 1250
 Wire Wire Line
 	6100 1050 6550 1050
@@ -623,4 +596,45 @@ Wire Wire Line
 Connection ~ 4500 3750
 Wire Wire Line
 	4500 3750 5000 3750
+Wire Wire Line
+	2550 6500 2600 6500
+$Comp
+L power:+5V #PWR?
+U 1 1 6039EA57
+P 2550 6500
+F 0 "#PWR?" H 2550 6350 50  0001 C CNN
+F 1 "+5V" V 2565 6628 50  0000 L CNN
+F 2 "" H 2550 6500 50  0001 C CNN
+F 3 "" H 2550 6500 50  0001 C CNN
+	1    2550 6500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+5V #PWR?
+U 1 1 602851FC
+P 3300 5600
+F 0 "#PWR?" H 3300 5450 50  0001 C CNN
+F 1 "+5V" V 3315 5728 50  0000 L CNN
+F 2 "" H 3300 5600 50  0001 C CNN
+F 3 "" H 3300 5600 50  0001 C CNN
+	1    3300 5600
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3300 5600 3350 5600
+Wire Wire Line
+	2550 6950 2600 6950
+$Comp
+L power:GND #PWR?
+U 1 1 6029A263
+P 3300 5750
+F 0 "#PWR?" H 3300 5500 50  0001 C CNN
+F 1 "GND" H 3305 5577 50  0000 C CNN
+F 2 "" H 3300 5750 50  0001 C CNN
+F 3 "" H 3300 5750 50  0001 C CNN
+	1    3300 5750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3300 5750 3350 5750
 $EndSCHEMATC
