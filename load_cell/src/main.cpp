@@ -1,6 +1,6 @@
 #include "HX711.h"
-const int LOADCELL_DOUT_PIN = 2;
-const int LOADCELL_SCK_PIN = 3;
+const int LOADCELL_DOUT_PIN = 0;
+const int LOADCELL_SCK_PIN = 1;
 float SCALE_CALIBRATE = 2280.f;
 float weight, cup_weight; 
 float threshold = 10; //the border when we accept there is a cup on the load cell
@@ -9,20 +9,30 @@ const int WATER_PUMP_1 = 13;
 const int WATER_PUMP_2 = 12;
 const int WATER_PUMP_3 = 11;
 
-const int BUTTON_1 = 10;
+const int BUTTON_1 = 10; 
 const int BUTTON_2 = 9;
 const int BUTTON_3 = 8;
+const int BUTTON_PLUS = 7; // button 4
+const int BUTTON_MINUS = 6; // button 5
+
 
 HX711 scale;
 
 int check_button(){
-  while(1){
 
+  while(1){
+    
     int is_clicked_1 = digitalRead(BUTTON_1);
-    delay(10);
+    //delay(10);
     int is_clicked_2 = digitalRead(BUTTON_2);
-    delay(10);
+    //delay(10);
     int is_clicked_3 = digitalRead(BUTTON_3);
+    //delay(10);
+
+    int is_clicked_PLUS = digitalRead(BUTTON_PLUS);
+    //delay(10);
+    int is_clicked_MINUS = digitalRead(BUTTON_MINUS);
+    delay(100);
 
 
     if(is_clicked_1 == HIGH){
@@ -33,6 +43,15 @@ int check_button(){
     }
     else if(is_clicked_3 == HIGH){
       return 3;
+    }
+    else if(is_clicked_PLUS == HIGH){
+      return 4; // PLUS
+    }
+    else if(is_clicked_MINUS == HIGH){
+      return 5; // MINUS
+    }
+    else{
+      return -1;
     }
 
   }
@@ -46,6 +65,9 @@ void setup() {
   pinMode(BUTTON_1, INPUT);
   pinMode(BUTTON_2, INPUT);
   pinMode(BUTTON_3, INPUT);
+  pinMode(BUTTON_PLUS, INPUT);
+  pinMode(BUTTON_MINUS, INPUT);
+
 
   Serial.begin(9600);
   Serial.println("Initializing the scale");
@@ -77,8 +99,11 @@ void setup() {
   Serial.println("Readings:");
 }
 
+
+float grams_to_pour = 50;// by default
 int PUMP;
 void loop() {
+
   int read_button = check_button();
   switch(read_button){
     case 1:
@@ -88,10 +113,22 @@ void loop() {
     case 2:
       PUMP = WATER_PUMP_2;
       break;
-    
+
     case 3:
       PUMP = WATER_PUMP_3;
       break;
+    
+    case 4:
+      grams_to_pour += 10; // will increase grams by 10g 
+      return;
+    
+    case 5:
+      grams_to_pour -= 10; // will decrease grams by 10g
+      return;
+
+    case -1:
+      return;
+      
   }
 
   Serial.print("one reading:\t");
@@ -111,7 +148,7 @@ void loop() {
     digitalWrite(PUMP, LOW);
 
   }
-
+  
   delay(10);
-
+  grams_to_pour = 50;
 }
