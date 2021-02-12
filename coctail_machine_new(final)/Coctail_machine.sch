@@ -80,8 +80,6 @@ F 3 "~" H 7900 2260 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	1900 4150 2100 4150
-Wire Wire Line
 	3200 6150 3150 6150
 $Comp
 L Coctail_machine-rescue:Load_cell-Arduino-7-segment-rescue L1
@@ -120,10 +118,6 @@ Wire Wire Line
 	4500 5750 4500 5850
 Wire Wire Line
 	2100 5850 3200 5850
-Wire Wire Line
-	2050 6000 2050 4250
-Wire Wire Line
-	2050 4250 1900 4250
 Wire Wire Line
 	2050 6000 3200 6000
 $Comp
@@ -204,8 +198,6 @@ Wire Wire Line
 	2450 3650 2450 3950
 Wire Wire Line
 	1900 3650 2450 3650
-Wire Wire Line
-	2100 4150 2100 5850
 $Comp
 L Device:R R1
 U 1 1 5FDC7ECC
@@ -462,4 +454,34 @@ Wire Wire Line
 Connection ~ 6100 1800
 Wire Wire Line
 	6100 1800 6550 1800
+$Comp
+L Switch:SW_Push SW?
+U 1 1 60268D72
+P 6100 3400
+F 0 "SW?" H 6100 3685 50  0000 C CNN
+F 1 "SW_Push" H 6100 3594 50  0000 C CNN
+F 2 "" H 6100 3600 50  0001 C CNN
+F 3 "~" H 6100 3600 50  0001 C CNN
+	1    6100 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW?
+U 1 1 6026C5EA
+P 6600 3500
+F 0 "SW?" H 6600 3785 50  0000 C CNN
+F 1 "SW_Push" H 6600 3694 50  0000 C CNN
+F 2 "" H 6600 3700 50  0001 C CNN
+F 3 "~" H 6600 3700 50  0001 C CNN
+	1    6600 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2100 5850 2100 4350
+Wire Wire Line
+	2100 4350 1900 4350
+Wire Wire Line
+	2050 6000 2050 4450
+Wire Wire Line
+	2050 4450 1900 4450
 $EndSCHEMATC
