@@ -479,7 +479,7 @@ Wire Wire Line
 Wire Wire Line
 	2000 6800 2600 6800
 $Comp
-L Arduino:Segment_Display U?
+L Coctail_machine-rescue:Segment_Display-Arduino U?
 U 1 1 6037EFCD
 P 4300 5550
 F 0 "U?" H 4200 5650 50  0000 L CNN
@@ -637,15 +637,4 @@ Wire Wire Line
 	2950 5300 3550 5300
 Wire Wire Line
 	2800 5450 3550 5450
-$Comp
-L pspice:DIODE D?
-U 1 1 60309455
-P 9700 1400
-F 0 "D?" H 9700 1665 50  0000 C CNN
-F 1 "DIODE" H 9700 1574 50  0000 C CNN
-F 2 "" H 9700 1400 50  0001 C CNN
-F 3 "~" H 9700 1400 50  0001 C CNN
-	1    9700 1400
-	1    0    0    -1  
-$EndComp
 $EndSCHEMATC
