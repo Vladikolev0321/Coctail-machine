@@ -1,6 +1,10 @@
 #include "HX711.h"
+#include <TM1637.h>
 const int LOADCELL_DOUT_PIN = 0;
 const int LOADCELL_SCK_PIN = 1;
+const int DISPLAY_CLK_PIN = 5;
+const int DISPLAY_DIO_PIN = 4;
+
 float SCALE_CALIBRATE = 2280.f;
 float weight, cup_weight; 
 float threshold = 10; //the border when we accept there is a cup on the load cell
@@ -17,6 +21,7 @@ const int BUTTON_MINUS = 6; // button 5
 
 
 HX711 scale;
+TM1637 display(DISPLAY_CLK_PIN, DISPLAY_DIO_PIN);
 
 int check_button(){
 
@@ -57,6 +62,21 @@ int check_button(){
   }
 }
 
+void displayNumber(int num){   
+    int position = 3;
+    while(num > 0)
+    {
+      display.display(position, num % 10);  
+      num /= 10;
+      position--;
+    } 
+    /*
+    tm.display(2, num / 10 % 10);   
+    tm.display(1, num / 100 % 10);   
+    tm.display(0, num / 1000 % 10);
+    */
+}
+
 void setup() {
   pinMode(WATER_PUMP_1, OUTPUT);
   pinMode(WATER_PUMP_2, OUTPUT);
@@ -67,6 +87,9 @@ void setup() {
   pinMode(BUTTON_3, INPUT);
   pinMode(BUTTON_PLUS, INPUT);
   pinMode(BUTTON_MINUS, INPUT);
+
+  display.init();
+  display.set(5);
 
 
   Serial.begin(9600);
@@ -103,6 +126,8 @@ void setup() {
 float grams_to_pour = 50;// by default
 int PUMP;
 void loop() {
+
+  displayNumber(grams_to_pour);
 
   int read_button = check_button();
   switch(read_button){
