@@ -1,23 +1,23 @@
 #include "HX711.h"
 #include <TM1637.h>
-const int LOADCELL_DOUT_PIN = 0;
-const int LOADCELL_SCK_PIN = 1;
-const int DISPLAY_CLK_PIN = 5;
-const int DISPLAY_DIO_PIN = 4;
+#define LOADCELL_DOUT_PIN 2
+#define LOADCELL_SCK_PIN 3
+#define DISPLAY_CLK_PIN 5
+#define DISPLAY_DIO_PIN 4
 
-float SCALE_CALIBRATE = 2280.f;
+float SCALE_CALIBRATE = 1200.f;
 float weight, cup_weight; 
 float threshold = 10; //the border when we accept there is a cup on the load cell
 
-const int WATER_PUMP_1 = 13;
-const int WATER_PUMP_2 = 12;
-const int WATER_PUMP_3 = 11;
+#define WATER_PUMP_1 13
+#define WATER_PUMP_2 12
+#define WATER_PUMP_3 11
 
-const int BUTTON_1 = 10; 
-const int BUTTON_2 = 9;
-const int BUTTON_3 = 8;
-const int BUTTON_PLUS = 7; // button 4
-const int BUTTON_MINUS = 6; // button 5
+#define BUTTON_1 10
+#define BUTTON_2 9
+#define BUTTON_3 8
+#define BUTTON_PLUS 7 // button 4
+#define BUTTON_MINUS 6 // button 5
 
 
 HX711 scale;
@@ -63,18 +63,19 @@ int check_button(){
 }
 
 void displayNumber(int num){   
-    int position = 3;
-    while(num > 0)
-    {
+  int position = 3;
+  while(position >= 0){
+
+    while(num > 0){
       display.display(position, num % 10);  
       num /= 10;
       position--;
-    } 
-    /*
-    tm.display(2, num / 10 % 10);   
-    tm.display(1, num / 100 % 10);   
-    tm.display(0, num / 1000 % 10);
-    */
+    }
+
+    display.display(position, 0); 
+    position--;
+  }
+
 }
 
 void setup() {
@@ -104,10 +105,17 @@ void setup() {
   scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
 
   scale.set_scale(SCALE_CALIBRATE);                      // this value is obtained by calibrating the scale with known weights; see the README for details
+  
+  scale.read();                 // print a raw reading from the ADC
+  scale.read();  
+  scale.read();  
+  
   scale.tare();				        // reset the scale to 0
 
-  Serial.print("read: \t\t");
-  Serial.println(scale.read());                 // print a raw reading from the ADC
+  scale.read();                 // print a raw reading from the ADC
+  scale.read();  
+  scale.read();  
+
 
   Serial.print("read average: \t\t");
   Serial.println(scale.read_average(20));       // print the average of 20 readings from the ADC
@@ -126,10 +134,10 @@ void setup() {
 float grams_to_pour = 50;// by default
 int PUMP;
 void loop() {
-
   displayNumber(grams_to_pour);
 
   int read_button = check_button();
+
   switch(read_button){
     case 1:
       PUMP = WATER_PUMP_1;
@@ -165,9 +173,10 @@ void loop() {
   if(weight > threshold){
     cup_weight = weight;
     while(weight < cup_weight + 50){
-      
       digitalWrite(PUMP, HIGH);
       weight = scale.get_units();
+      Serial.print("Now measuring:\t");
+      Serial.println(weight, 1);
     }
 
     digitalWrite(PUMP, LOW);
@@ -176,4 +185,5 @@ void loop() {
   
   delay(10);
   grams_to_pour = 50;
+  Serial.print("Ready for new coctail:\t");
 }
