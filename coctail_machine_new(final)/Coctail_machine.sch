@@ -469,14 +469,6 @@ Wire Wire Line
 Wire Wire Line
 	2600 6650 2100 6650
 Wire Wire Line
-	2100 6650 2100 4350
-Wire Wire Line
-	2100 4350 1900 4350
-Wire Wire Line
-	1900 4450 2000 4450
-Wire Wire Line
-	2000 4450 2000 6800
-Wire Wire Line
 	2000 6800 2600 6800
 $Comp
 L Coctail_machine-rescue:Segment_Display-Arduino U?
@@ -637,4 +629,12 @@ Wire Wire Line
 	2950 5300 3550 5300
 Wire Wire Line
 	2800 5450 3550 5450
+Wire Wire Line
+	2100 6650 2100 4150
+Wire Wire Line
+	2100 4150 1900 4150
+Wire Wire Line
+	2000 6800 2000 4250
+Wire Wire Line
+	2000 4250 1900 4250
 $EndSCHEMATC
