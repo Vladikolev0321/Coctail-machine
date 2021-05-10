@@ -7,7 +7,8 @@
 
 float SCALE_CALIBRATE = 1200.f;
 float weight, cup_weight; 
-float threshold = 10; //the border when we accept there is a cup on the load cell
+float threshold = 10; //the border when we accept
+// there is a cup on the load cell
 
 #define WATER_PUMP_1 13
 #define WATER_PUMP_2 12
@@ -172,7 +173,7 @@ void loop() {
 
   if(weight > threshold){
     cup_weight = weight;
-    while(weight < cup_weight + 50){
+    while(weight < cup_weight + grams_to_pour){
       digitalWrite(PUMP, HIGH);
       weight = scale.get_units();
       Serial.print("Now measuring:\t");
