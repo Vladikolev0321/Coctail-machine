@@ -175,7 +175,7 @@ void loop() {
     cup_weight = weight;
     while(weight < cup_weight + grams_to_pour){
       digitalWrite(PUMP, HIGH);
-      weight = scale.get_units();
+      weight = scale.get_units(5);
       Serial.print("Now measuring:\t");
       Serial.println(weight, 1);
     }
