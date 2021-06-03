@@ -1,2 +1,2 @@
 # Coctail-machine
-Course work for Computer Integrated Systems in school
+Course work for Micro Computer Integrated Systems in school
