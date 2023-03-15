@@ -1,1 +1,0 @@
-to add message displaying on the screen if there is no cup and if the coctail is ready
